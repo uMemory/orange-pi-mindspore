@@ -61,7 +61,7 @@ other = other.to(mindspore.float16)
 
 具体代码在如图所示位置：
 
-![bmm](.\README.assets\bmm.png)
+![bmm](./README.assets/bmm.png)
 
 
 
