@@ -1,12 +1,12 @@
 # 文本转语音（Text-to-Audio, TTA）
 
-​	基于 MindNLP 框架，使用 SpeechT5 模型，在香橙派 AIpro 开发板（搭载昇腾 Ascend310B NPU）上实现英文文本的语音合成。支持外部说话人嵌入配置，提供交互式 Demo 演示，可合成自然流畅的英文语音。
+​	基于 Mindspore NLP 框架，使用 SpeechT5 模型，在香橙派 AIpro 开发板（搭载昇腾 Ascend310B NPU）上实现英文文本的语音合成。支持外部说话人嵌入配置，提供交互式 Demo 演示，可合成自然流畅的英文语音。
 
 
 
 ## 介绍
 
-​	基于香橙派 AIpro 边缘计算硬件的低功耗、高算力特性，结合 MindNLP 框架的灵活部署能力，实现高质量英文文本转语音合成。该方案采用 SpeechT5 Transformer 编码器-解码器架构与 HiFi-GAN 神经声码器，在昇腾 NPU 上实现实时推理。
+​	基于香橙派 AIpro 边缘计算硬件的低功耗、高算力特性，结合 Mindspore NLP 框架的灵活部署能力，实现高质量英文文本转语音合成。该方案采用 SpeechT5 Transformer 编码器-解码器架构与 HiFi-GAN 神经声码器，在昇腾 NPU 上实现实时推理。
 
 
 
@@ -30,14 +30,14 @@
 | ---------- | ------------------------------------- |
 | 开发板镜像 | Ubuntu                                |
 | CANN       | 8.1.RC1                               |
-| MindNL     | 0.4.1                                 |
+| Mindspore NLP | 0.4.1                                 |
 | MindSpore  | 2.6.0                                 |
 | Python     | 3.9                                   |
 | 开发板型号 | Orange Pi AIpro 20T24G |
 
 
 
-## MindNLP 0.4.1 源码适配说明
+## Mindspore NLP 0.4.1 源码适配说明
 
 ​	运行本 notebook 文件 前，需手动修改以下 **3 个库文件**（共 4 处）。另外说明对 notebook cell 内 1 处模型配置修改（该部分已在.ipynb中的cell中添加），以适配 OrangePi AIPro 20T (Ascend 310B) 的算子限制。**此部分不可跳过，否则代码执行会遇到报错。** 
 
@@ -69,7 +69,7 @@ other = other.to(mindspore.float16)
 
 **修改 1 — 第 2343 行**
 
-`new_zeros` 在 MindNLP 中只接受单个元组参数，不接受多个位置参数。将：
+`new_zeros` 在 Mindspore NLP 中只接受单个元组参数，不接受多个位置参数。将：
 
 ```python
 output_sequence = encoder_last_hidden_state.new_zeros(bsz, 1, model.config.num_mel_bins)
